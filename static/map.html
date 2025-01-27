@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa</title>
+
+    <style>
+      #map-root {
+        height: 600px;
+        width: 1000px;
+      }
+    </style>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const map = L.map("map-root", {
+          zoomSnap: 0.25,
+          attributionControl: false,
+          zoomControl: false,
+        })
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map)
+
+        const geoJsonData = await fetch("/geom").then(r => r.json())
+        const geoJsonLayer = L.geoJSON(geoJsonData, {
+          style: { color: "red" },
+          onEachFeature: feature => {
+            console.log(feature)
+          },
+        }).addTo(map)
+        map.fitBounds(geoJsonLayer.getBounds(), { animate: false })
+        const bounds = geoJsonLayer.getBounds()
+        console.log("bounds", bounds)
+        const bb = [
+          bounds.getNorthWest(),
+          bounds.getNorthEast(),
+          bounds.getSouthWest(),
+          bounds.getSouthEast(),
+        ]
+        for (const latlng of bb) {
+          L.marker(latlng).addTo(map)
+        }
+        geoJsonLayer.addTo(map)
+      })
+    </script>
+  </head>
+  <body>
+    <div id="map-root"></div>
+  </body>
+</html>
