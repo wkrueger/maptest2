@@ -50,7 +50,10 @@ Dentro do QGIS:
 
 Adicionando estados:
 
-A tabela de geometrias de municípios apenas inclui o seu código IBGE. Esta coluna pode ser usada
+Relembrando que o GPKG é um banco SQLite, cada geometria possui além dela própria, outras colunas com
+metadados.
+
+A tabela de geometrias de municípios inclui o seu código IBGE. Esta coluna pode ser usada
 pra fins de filtro por estado (os dois primeiros dígitos do código IBGE correspondem ao estado)
 Se necessário A tabela pode ser melhorada pra facilitar a consulta, adicionando uma coluna de estado.
 Seria também interessante adicionar um índice à coluna que for usada pra filtrar.
@@ -61,3 +64,9 @@ Para manipular isso, eu optaria por escrever um pequeno script node.
 
  - Criar uma rota que leia o GeoPackage e converta pra GSOJson;
  - Colocar o GeoPackage gerado em uma pasta resources;
+ - Adicionar um argumento no gerador de PDF para que os scripts não sejam desativados; Os scripts
+   dos demais PDFs devem continuar desativados;
+ - PS: Uma alternativa mais complexa é verificar se o puppeteer tem suporte a incluir scripts apenas
+   de domínios selecionados. Mas ativar scripts só pro relatório do mapa já é OK;
+ - No caso de external PDF, eu vou ter que publicar esta alteração no servidor externo;
+ - Criar relatório que carregue o mapa via Leaflet; 
