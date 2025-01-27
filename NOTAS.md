@@ -70,3 +70,4 @@ Para manipular isso, eu optaria por escrever um pequeno script node, ou usar o D
    de domínios selecionados. Mas ativar scripts só pro relatório do mapa já é OK;
  - No caso de external PDF, eu vou ter que publicar esta alteração no servidor externo;
  - Criar relatório que carregue o mapa via Leaflet; 
+ - Possível problema: O puppeteer espera o mapa carregar antes de gerar o PDF?
