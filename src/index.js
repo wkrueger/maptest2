@@ -28,16 +28,13 @@ app.get("/geom", async (request, reply) => {
     const geoJson = wkx.Geometry.parse(stripped).toGeoJSON()
     const { geom, ...properties } = row
     allRows.push({
+      ...geoJson,
       properties,
-      geom: geoJson,
     })
   }
   return {
     type: "GeometryCollection",
-    geometries: allRows.map(r => {
-      const { geom, ...properties } = r
-      return { ...geom, properties }
-    }),
+    geometries: allRows,
   }
 })
 
