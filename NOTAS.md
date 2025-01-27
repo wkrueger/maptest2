@@ -58,7 +58,7 @@ pra fins de filtro por estado (os dois primeiros dígitos do código IBGE corres
 Se necessário A tabela pode ser melhorada pra facilitar a consulta, adicionando uma coluna de estado.
 Seria também interessante adicionar um índice à coluna que for usada pra filtrar.
 
-Para manipular isso, eu optaria por escrever um pequeno script node.
+Para manipular isso, eu optaria por escrever um pequeno script node, ou usar o DBeaver;
 
 # No backend
 
