@@ -30,6 +30,8 @@ O GPKG é um banco de dados SQLite e pode ser aberto no QGIS ou no DBeaver (no D
 
 # Processamento das Geometrias:
 
+ - Instalar QGIS;
+
  - Se estiver usando Windows, evite instalar o QGIS de Windows. Ao invés disso instale no WSL e use
 via WSL gráfico. A aplicação aparece no menu Iniciar.
 
